@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"comment"
+"""comment"""
 import urllib.request
 
 if __name__ == "__main__":
