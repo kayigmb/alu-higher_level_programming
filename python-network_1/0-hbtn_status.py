@@ -1,12 +1,13 @@
 #!/usr/bin/python3
-"""comment"""
+"""documeted"""
+
+
 import urllib.request
 
 if __name__ == "__main__":
-    y = urllib.request.Request("https://intranet.hbtn.io/status")
-    with urllib.request.urlopen(y) as re:
-        data = re.read()
+    with urllib.request.urlopen("https://intranet.hbtn.io/status") as response:
+        content = response.read()
         print("Body response:")
-        print(f"\t- type: {type(data)}")
-        print(f"\t- content: {data}")
-        print(f"\t- utf8 content: {data.decode("utf-8")}")
+        print("\t- type: {}".format(type(content)))
+        print("\t- content: {}".format(content))
+        print("\t- utf8 content: {}".format(content.decode("utf-8")))
