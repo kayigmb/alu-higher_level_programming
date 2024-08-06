@@ -1,13 +1,17 @@
 #!/usr/bin/python3
-"""commnnt"""
+"""
+documentation file here
+"""
+
 
 from models.base import Base
 
 
 class Rectangle(Base):
-    """commnnt"""
+    """documentation"""
 
     def __init__(self, width, height, x=0, y=0, id=None):
+        """init def"""
         super().__init__(id)
         self.width = width
         self.height = height
@@ -16,109 +20,88 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        """commnnt"""
-
-        return self.__width
+        """comment width"""
+        return self._width
 
     @width.setter
     def width(self, value):
-        """commnnt"""
-
-        if type(value) != int:
+        """comment width"""
+        if not isinstance(value, int):
             raise TypeError("width must be an integer")
-
         if value <= 0:
             raise ValueError("width must be > 0")
-        self.__width = value
+        self._width = value
 
     @property
     def height(self):
-        """commnnt"""
-
-        return self.__height
+        """Comment heigh"""
+        return self._height
 
     @height.setter
     def height(self, value):
-        """commnnt"""
-
-        if type(value) != int:
+        """Comment heigh"""
+        if not isinstance(value, int):
             raise TypeError("height must be an integer")
-
         if value <= 0:
             raise ValueError("height must be > 0")
-
-        self.__height = value
+        self._height = value
 
     @property
     def x(self):
-        """commnnt"""
-        return self.__x
+        """comment x"""
+        return self._x
 
     @x.setter
     def x(self, value):
-        """commnnt"""
-        if type(value) != int:
+        """comment x"""
+        if not isinstance(value, int):
             raise TypeError("x must be an integer")
         if value < 0:
             raise ValueError("x must be >= 0")
-        self.__x = value
+        self._x = value
 
     @property
     def y(self):
-        """commnnt"""
-        return self.__y
+        """comment y"""
+        return self._y
 
     @y.setter
     def y(self, value):
-        """commnnt"""
-
-        if type(value) != int:
+        """comment y"""
+        if not isinstance(value, int):
             raise TypeError("y must be an integer")
-
         if value < 0:
             raise ValueError("y must be >= 0")
-
-        self.__y = value
+        self._y = value
 
     def area(self):
-        """commnnt"""
+        """to get the area of rectangle"""
         return self.width * self.height
 
     def display(self):
-        """commnnt"""
-        for i in range(self.y):
+        """prints out"""
+        for _ in range(self.y):
             print()
-        for i in range(self.height):
+        for _ in range(self.height):
             print(" " * self.x + "#" * self.width)
 
-    def __str__(self):
-        """commnnt"""
+    def __str__(self) -> str:
         return "[Rectangle] ({}) {}/{} - {}/{}".format(
             self.id, self.x, self.y, self.width, self.height
         )
 
     def update(self, *args, **kwargs):
-        """commnnt"""
-        if len(args) != 0:
-            try:
-                self.id = args[0]
-                self.width = args[1]
-                self.height = args[2]
-                self.x = args[3]
-                self.y = args[4]
-            except IndexError:
-                pass
-        elif len(kwargs) != 0:
-            self.id = kwargs["id"] if "id" in kwargs else self.id
-            self.width = kwargs["width"] if "width" in kwargs \
-                        else self.width
-            self.height = kwargs["height"] if "height" in kwargs \
-                else self.height
-            self.x = kwargs["x"] if "x" in kwargs else self.x
-            self.y = kwargs["y"] if "y" in kwargs else self.y
+        """update using args"""
+        if args:
+            attr = ["id", "width", "height", "x", "y"]
+            for i, v in enumerate(args):
+                setattr(self, attr[i], v)
+        else:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
 
     def to_dictionary(self):
-        """commnnt"""
+        """commment dict"""
         return {
             "id": self.id,
             "width": self.width,

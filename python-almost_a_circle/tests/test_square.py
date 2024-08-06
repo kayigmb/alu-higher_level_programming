@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""commenting is done """
+"""documentaion of file """
 
 import os
 import unittest
@@ -11,10 +11,10 @@ from models.square import Square
 
 
 class TestSquare(unittest.TestCase):
-    """commenting is done"""
+    """documentaion of file"""
 
     def test_instance(self):
-        """commenting is done"""
+        """documentaion of file"""
         s = Square(1)
         s1 = Square(1, 2)
         s2 = Square(1, 2, 3)
@@ -48,12 +48,12 @@ class TestSquare(unittest.TestCase):
             s6 = Square(1, 2, "3")
 
     def test_area(self):
-        """commenting is done"""
+        """documentaion of file"""
         s1 = Square(2)
         self.assertEqual(s1.area(), 4)
 
     def test__str__(self):
-        """commenting is done"""
+        """documentaion of file"""
         Base._Base__nb_objects = 0
         s1 = Square(2)
         with patch("sys.stdout", new=StringIO()) as fake_out:
@@ -61,7 +61,7 @@ class TestSquare(unittest.TestCase):
             self.assertEqual(fake_out.getvalue(), "[Square] (1) 0/0 - 2\n")
 
     def test_display(self):
-        """commenting is done"""
+        """documentaion of file"""
         s1 = Square(2)
         s2 = Square(2, 2, 3)
         with patch("sys.stdout", new=StringIO()) as fake_out:
@@ -72,13 +72,15 @@ class TestSquare(unittest.TestCase):
             self.assertEqual(fake_out.getvalue(), "\n\n\n  ##\n  ##\n")
 
     def test_to_dictionary(self):
-        """commenting is done"""
+        """documentaion of file"""
         Base._Base__nb_objects = 0
         s1 = Square(4)
-        self.assertEqual(s1.to_dictionary(), {"id": 1, "size": 4, "x": 0, "y": 0})
+        self.assertEqual(s1.to_dictionary(), {
+            "id": 1, "size": 4, "x": 0, "y": 0
+        })
 
     def test_update(self):
-        """commenting is done"""
+        """documentaion of file"""
         Base._Base__nb_objects = 0
         s1 = Square(2)
         s1.update()
@@ -121,7 +123,7 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s1.y, 3)
 
     def test_create(self):
-        """commenting is done"""
+        """documentaion of file"""
 
         s1 = Square.create(**{"id": 89})
         self.assertEqual(s1.id, 89)
@@ -148,7 +150,7 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s1.y, 3)
 
     def test_save_to_file(self):
-        """commenting is done"""
+        """documentaion of file"""
         Base._Base__nb_objects = 0
 
         Square.save_to_file(None)
@@ -163,7 +165,8 @@ class TestSquare(unittest.TestCase):
 
         Square.save_to_file([Square(1)])
         with open("Square.json") as file:
-            self.assertEqual(file.read(), '[{"id": 1, "size": 1, "x": 0, "y": 0}]')
+            self.assertEqual(file.read(), 
+                '[{"id": 1, "size": 1, "x": 0, "y": 0}]')
 
     def test_save_to_file_empty(self):
         Square.save_to_file([])
@@ -173,7 +176,7 @@ class TestSquare(unittest.TestCase):
             self.assertEqual(type(file.read()), str)
 
     def test_load_from_file(self):
-        """commenting is done"""
+        """documentaion of file"""
         if os.path.exists("Square.json"):
             os.remove("Square.json")
 
